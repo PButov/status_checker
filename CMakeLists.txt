@@ -9,6 +9,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED )
 find_package(std_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
 find_package(behaviortree_cpp REQUIRED)
 find_package(behaviortree_ros2 REQUIRED)
 
@@ -20,7 +21,12 @@ add_executable(
   src/status_check_init.cpp
   src/battery_check.cpp)
 
-ament_target_dependencies(status_checker rclcpp std_msgs behaviortree_cpp behaviortree_ros2) 
+ament_target_dependencies(status_checker
+  rclcpp
+  std_msgs
+  sensor_msgs
+  behaviortree_cpp
+  behaviortree_ros2) 
 
 # install
 

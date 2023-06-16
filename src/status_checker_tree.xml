@@ -2,7 +2,7 @@
      <BehaviorTree ID="MainTree">
         <Sequence name="root_sequence">
             <StatusCheckInit   name="status_check_init"/>
-            <BatteryCheck      name="battery_check" topic_name="battery_charge"/>
+            <BatteryCheck      name="battery_check" topic_name="battery_charge" min_battery="55"/>
         </Sequence>
      </BehaviorTree>
  </root>
