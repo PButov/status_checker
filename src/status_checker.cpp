@@ -13,28 +13,29 @@ using namespace BT;
 int main(int argc, char * argv[])
 {
 
-  rclcpp::init(argc, argv);
+    rclcpp::init(argc, argv);
 
-  BehaviorTreeFactory factory;
+    BehaviorTreeFactory factory;
 
-  factory.registerNodeType<StatusCheckInit>("StatusCheckInit");
+    factory.registerNodeType<StatusCheckInit>("StatusCheckInit");
 
-  auto nh = std::make_shared<rclcpp::Node>("battery_check");
+    auto nh = std::make_shared<rclcpp::Node>("battery_check");
   
-  RosNodeParams params;
-  params.nh = nh;
-  params.default_port_value = "battery_charge";
+    RosNodeParams params;
+    params.nh = nh;
+    params.default_port_value = "battery_charge";
 
-  factory.registerNodeType<BatteryCheck>("BatteryCheck", params);
+    factory.registerNodeType<BatteryCheck>("BatteryCheck", params);
 
-  auto tree = factory.createTreeFromFile("/home/parallels/ros2_ws_bt/src/status_checker/src/status_checker_tree.xml");
+    auto tree = factory.createTreeFromFile("/home/ws/src/status_checker/src/status_checker_tree.xml");
 
-  while (true)
-  {
-    tree.tickWhileRunning();
-    //sleep(0.1);
-  }
+    while (true)
+    {
+        tree.tickWhileRunning();
+        //sleep(0.1);
+    }
   
-  //rclcpp::shutdown();
-  return 0;
+    //rclcpp::shutdown();
+    return 0;
+    
 }
